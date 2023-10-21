@@ -25,6 +25,7 @@
 		CCBE071F2AE3BD2000900F93 /* PBTransactions.json in Resources */ = {isa = PBXBuildFile; fileRef = CCBE071E2AE3BD2000900F93 /* PBTransactions.json */; };
 		CCBE07222AE3C63B00900F93 /* JSONDecoder+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBE07212AE3C63B00900F93 /* JSONDecoder+Extension.swift */; };
 		CCBE07242AE3D41B00900F93 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = CCBE07232AE3D41A00900F93 /* Localizable.xcstrings */; };
+		CCE828692AE3DBE900B9D166 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCE828682AE3DBE900B9D166 /* Reachability.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -47,6 +48,7 @@
 		CCBE071E2AE3BD2000900F93 /* PBTransactions.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = PBTransactions.json; sourceTree = "<group>"; };
 		CCBE07212AE3C63B00900F93 /* JSONDecoder+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "JSONDecoder+Extension.swift"; sourceTree = "<group>"; };
 		CCBE07232AE3D41A00900F93 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
+		CCE828682AE3DBE900B9D166 /* Reachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,6 +92,7 @@
 				CCBE06E02AE3A43F00900F93 /* Preview Content */,
 				CCBE07042AE3A6DF00900F93 /* Transactions */,
 				CCBE07232AE3D41A00900F93 /* Localizable.xcstrings */,
+				CCE828682AE3DBE900B9D166 /* Reachability.swift */,
 			);
 			path = WorldOfPAYBACK;
 			sourceTree = "<group>";
@@ -220,6 +223,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CCE828692AE3DBE900B9D166 /* Reachability.swift in Sources */,
 				CCBE070C2AE3AADD00900F93 /* TransactionModel.swift in Sources */,
 				CCBE07062AE3A73600900F93 /* TransactionsRouter.swift in Sources */,
 				CCBE071A2AE3BC7F00900F93 /* ApiServiceError.swift in Sources */,

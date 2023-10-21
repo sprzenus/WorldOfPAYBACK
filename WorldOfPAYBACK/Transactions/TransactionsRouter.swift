@@ -14,7 +14,8 @@ final class TransactionsRouter {
         let store = TransactionsStore()
         let presenter = TransactionsPresenter(
             userInterface: store,
-            transactionsProvider: TransactionsProvider()
+            transactionsProvider: TransactionsProvider(),
+            reachability: NetworkReachability()
         )
         let view = TransactionsView(
             presenter: presenter,

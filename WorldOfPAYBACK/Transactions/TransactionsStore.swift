@@ -12,6 +12,7 @@ protocol TransactionsUserInterface: AnyObject {
     func set(isLoading: Bool)
     func set(transactions: [TransactionModel])
     func set(errorMessage: String?)
+    func set(isInternetReachable: Bool)
 }
 
 @MainActor
@@ -19,15 +20,18 @@ final class TransactionsStore: ObservableObject {
     @Published var isLoading: Bool
     @Published var transactions: [TransactionModel]
     @Published var errorMessage: String?
+    @Published var isInternetReachable: Bool
     
     init(
         isLoading: Bool = false,
         transactions: [TransactionModel] = [],
-        errorMessage: String? = nil
+        errorMessage: String? = nil,
+        isInternetReachable: Bool = true
     ) {
         self.isLoading = isLoading
         self.transactions = transactions
         self.errorMessage = errorMessage
+        self.isInternetReachable = isInternetReachable
     }
 }
 
@@ -44,5 +48,9 @@ extension TransactionsStore: TransactionsUserInterface {
     
     func set(errorMessage: String?) {
         self.errorMessage = errorMessage
+    }
+    
+    func set(isInternetReachable: Bool) {
+        self.isInternetReachable = isInternetReachable
     }
 }

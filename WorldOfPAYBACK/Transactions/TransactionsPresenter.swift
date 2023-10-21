@@ -5,6 +5,7 @@
 //  Created by Bartłomiej Świerad on 21/10/2023.
 //
 
+import Combine
 import Foundation
 
 @MainActor
@@ -16,13 +17,20 @@ protocol TransactionsPresenterInterface: AnyObject {
 final class TransactionsPresenter {
     private weak var userInterface: TransactionsUserInterface?
     private let transactionsProvider: TransactionsProviderType
+    private let reachability: ReachabilityInterface
+    
+    private var cancellables: Set<AnyCancellable> = []
+    
+    // MARK: - Initialization
     
     init(
         userInterface: TransactionsUserInterface?,
-        transactionsProvider: TransactionsProviderType
+        transactionsProvider: TransactionsProviderType,
+        reachability: ReachabilityInterface
     ) {
         self.userInterface = userInterface
         self.transactionsProvider = transactionsProvider
+        self.reachability = reachability
     }
 }
 
@@ -30,6 +38,8 @@ final class TransactionsPresenter {
 
 extension TransactionsPresenter: TransactionsPresenterInterface {
     func prepareView() {
+        subscribeToNetworkAvailability()
+        
         userInterface?.set(isLoading: true)
         userInterface?.set(errorMessage: nil)
         Task {
@@ -42,6 +52,17 @@ extension TransactionsPresenter: TransactionsPresenterInterface {
 // MARK: - Private
 
 extension TransactionsPresenter {
+    private func subscribeToNetworkAvailability() {
+        reachability.networkAvailabilityChangedPublisher
+            .sink(receiveValue: { [weak self] in
+                Task { [weak self] in
+                    guard let self else { return }
+                    userInterface?.set(isInternetReachable: reachability.isNetworkAvailable())
+                }
+            })
+            .store(in: &cancellables)
+    }
+    
     private func fetchData() async throws {
         let result = try await transactionsProvider.getTransactions()
         switch result {

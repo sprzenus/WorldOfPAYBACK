@@ -20,6 +20,9 @@
           }
         }
       }
+    },
+    "We've lost internet connection." : {
+
     }
   },
   "version" : "1.0"

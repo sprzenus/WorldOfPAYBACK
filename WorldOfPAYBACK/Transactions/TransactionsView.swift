@@ -57,6 +57,22 @@ struct TransactionsView: View {
                 }
             }
         }
+        .overlay {
+            if !store.isInternetReachable {
+                VStack {
+                    HStack(spacing: 8) {
+                        Image(systemName: "wifi.slash")
+                        Text("We've lost internet connection.")
+                            .font(.callout)
+                    }
+                    .padding(.horizontal, 24)
+                    .padding(.vertical, 8)
+                    .frame(maxWidth: .infinity)
+                    .background(Color.orange)
+                    Spacer()
+                }
+            }
+        }
         .navigationTitle("Transactions")
         .tabItem {
             Group {
@@ -92,9 +108,12 @@ private struct TransactionRow: View {
                     .padding(.top, 4)
             }
             
-            Text(priceAmount.formatted(.currency(code: priceCurrency)))
-                .font(Font.title3.bold())
-                .padding(.top, 4)
+            HStack {
+                Spacer()
+                Text(priceAmount.formatted(.currency(code: priceCurrency)))
+                    .font(Font.title3.bold())
+                    .padding(.top, 4)
+            }
         }
     }
 }
@@ -117,7 +136,8 @@ private struct TransactionRow: View {
                         )
                     ),
                 ],
-                errorMessage: "generic error message"
+                errorMessage: "generic error message",
+                isInternetReachable: false
             )
         )
     }
