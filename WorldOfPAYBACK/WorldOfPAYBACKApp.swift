@@ -12,7 +12,7 @@ struct WorldOfPAYBACKApp: App {
     var body: some Scene {
         WindowGroup {
             TabView {
-                ContentView()
+                TransactionsRouter().getView()
             }
         }
     }
