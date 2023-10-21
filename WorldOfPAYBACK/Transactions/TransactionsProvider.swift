@@ -8,6 +8,7 @@
 import Foundation
 
 protocol TransactionsProviderType: AnyObject {
+    /// Returns result of fetching transactions. Throws only `CancellationError`.
     func getTransactions() async throws -> Result<TransactionsResponseModel, ApiServiceError>
 }
 
@@ -24,7 +25,9 @@ final class TransactionsProvider {
 extension TransactionsProvider: TransactionsProviderType {
     func getTransactions() async throws -> Result<TransactionsResponseModel, ApiServiceError> {
         // Uncomment the next line when backend is ready.
-        //        return try await apiService.getTransactions()
+        // return try await apiService.getTransactions()
+        
+        try await Task.sleep(nanoseconds: UInt64(2e9))
         do {
             if let filePath = Bundle.main.path(forResource: "PBTransactions", ofType: "json"),
                let data = FileManager.default.contents(atPath: filePath)

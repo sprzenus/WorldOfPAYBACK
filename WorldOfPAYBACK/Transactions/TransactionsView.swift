@@ -31,6 +31,17 @@ struct TransactionsView: View {
                 )
             }
         }
+        .overlay {
+            if store.isLoading {
+                ZStack {
+                    ProgressView()
+                        .progressViewStyle(.circular)
+                    Color.black
+                        .ignoresSafeArea(edges: [.horizontal, .top])
+                        .opacity(0.2)
+                }
+            }
+        }
         .navigationTitle("Transactions")
         .tabItem {
             Group {
