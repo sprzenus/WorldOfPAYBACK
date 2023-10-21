@@ -19,17 +19,20 @@ protocol TransactionsUserInterface: AnyObject {
 final class TransactionsStore: ObservableObject {
     @Published var isLoading: Bool
     @Published var transactions: [TransactionModel]
+    @Published var categories: [Int]
     @Published var errorMessage: String?
     @Published var isInternetReachable: Bool
     
     init(
         isLoading: Bool = false,
         transactions: [TransactionModel] = [],
+        categories: [Int] = [],
         errorMessage: String? = nil,
         isInternetReachable: Bool = true
     ) {
         self.isLoading = isLoading
         self.transactions = transactions
+        self.categories = categories
         self.errorMessage = errorMessage
         self.isInternetReachable = isInternetReachable
     }
@@ -44,6 +47,7 @@ extension TransactionsStore: TransactionsUserInterface {
     
     func set(transactions: [TransactionModel]) {
         self.transactions = transactions
+        self.categories = Set(transactions.map(\.category)).sorted()
     }
     
     func set(errorMessage: String?) {

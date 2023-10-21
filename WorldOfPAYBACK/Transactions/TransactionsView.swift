@@ -10,6 +10,15 @@ import SwiftUI
 struct TransactionsView: View {
     private let presenter: TransactionsPresenterInterface?
     @ObservedObject private var store: TransactionsStore
+    @State private var filterByCategory: Int?
+    
+    private var transactions: [TransactionModel] {
+        if let filterByCategory {
+            store.transactions.filter { $0.category == filterByCategory }
+        } else {
+            store.transactions
+        }
+    }
     
     init(
         presenter: TransactionsPresenterInterface?,
@@ -21,7 +30,7 @@ struct TransactionsView: View {
     
     var body: some View {
         List {
-            ForEach(store.transactions) { transaction in
+            ForEach(transactions) { transaction in
                 TransactionRow(
                     partnerDisplayName: transaction.partnerDisplayName,
                     bookingDate: transaction.transactionDetail.bookingDate,
@@ -73,6 +82,9 @@ struct TransactionsView: View {
                 }
             }
         }
+        .toolbar(content: {
+            toolbarContents
+        })
         .navigationTitle("Transactions")
         .tabItem {
             Group {
@@ -82,6 +94,38 @@ struct TransactionsView: View {
         }
         .onAppear {
             presenter?.prepareView()
+        }
+    }
+    
+    @ToolbarContentBuilder
+    private var toolbarContents: some ToolbarContent {
+        ToolbarItem(placement: .topBarTrailing) {
+            Menu {
+                Button {
+                    filterByCategory = nil
+                } label: {
+                    Text("Clear filters")
+                }
+                ForEach(store.categories, id: \.self) { category in
+                    Button {
+                        filterByCategory = category
+                    } label: {
+                        HStack {
+                            Text("\(category)")
+                            Spacer()
+                            if filterByCategory == category {
+                                Image(systemName: "checkmark")
+                            }
+                        }
+                    }
+                }
+            } label: {
+                if filterByCategory == nil {
+                    Image(systemName: "line.3.horizontal.decrease.circle")
+                } else {
+                    Image(systemName: "line.3.horizontal.decrease.circle.fill")
+                }
+            }
         }
     }
 }
@@ -95,12 +139,12 @@ private struct TransactionRow: View {
     
     var body: some View {
         VStack(alignment: .leading) {
-                Text(partnerDisplayName)
-                    .font(.headline)
-                Text(bookingDate.formatted(date: .abbreviated, time: .standard))
-                    .font(.caption)
-                    .opacity(0.8)
-                    .multilineTextAlignment(.leading)
+            Text(partnerDisplayName)
+                .font(.headline)
+            Text(bookingDate.formatted(date: .abbreviated, time: .standard))
+                .font(.caption)
+                .opacity(0.8)
+                .multilineTextAlignment(.leading)
             if let description {
                 Text(description)
                     .font(.subheadline)
@@ -120,25 +164,28 @@ private struct TransactionRow: View {
 
 #Preview {
     TabView {
-        TransactionsView(
-            presenter: nil,
-            store: TransactionsStore(
-                isLoading: true,
-                transactions: [
-                    .init(
-                        partnerDisplayName: "One title",
-                        alias: .init(reference: "ref"),
-                        category: 2,
-                        transactionDetail: .init(
-                            description: "Description",
-                            bookingDate: Date(),
-                            value: .init(amount: 123, currency: "PLN")
-                        )
-                    ),
-                ],
-                errorMessage: "generic error message",
-                isInternetReachable: false
+        NavigationView {
+            TransactionsView(
+                presenter: nil,
+                store: TransactionsStore(
+                    isLoading: false,
+                    transactions: [
+                        .init(
+                            partnerDisplayName: "One title",
+                            alias: .init(reference: "ref"),
+                            category: 2,
+                            transactionDetail: .init(
+                                description: "Description",
+                                bookingDate: Date(),
+                                value: .init(amount: 123, currency: "PLN")
+                            )
+                        ),
+                    ],
+                    categories: [1, 2, 3],
+                    errorMessage: "generic error message",
+                    isInternetReachable: true
+                )
             )
-        )
+        }
     }
 }

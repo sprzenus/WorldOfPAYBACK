@@ -1,7 +1,13 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "%lld" : {
+
+    },
     "An error occured" : {
+
+    },
+    "Clear filters" : {
 
     },
     "Retry" : {
