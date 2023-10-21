@@ -1,0 +1,26 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "An error occured" : {
+
+    },
+    "Retry" : {
+
+    },
+    "Transactions" : {
+
+    },
+    "transactions_error_generic" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "An error has occured, please try again later."
+          }
+        }
+      }
+    }
+  },
+  "version" : "1.0"
+}

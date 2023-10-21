@@ -24,6 +24,7 @@
 		CCBE071C2AE3BC8B00900F93 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBE071B2AE3BC8B00900F93 /* Endpoint.swift */; };
 		CCBE071F2AE3BD2000900F93 /* PBTransactions.json in Resources */ = {isa = PBXBuildFile; fileRef = CCBE071E2AE3BD2000900F93 /* PBTransactions.json */; };
 		CCBE07222AE3C63B00900F93 /* JSONDecoder+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBE07212AE3C63B00900F93 /* JSONDecoder+Extension.swift */; };
+		CCBE07242AE3D41B00900F93 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = CCBE07232AE3D41A00900F93 /* Localizable.xcstrings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,6 +46,7 @@
 		CCBE071B2AE3BC8B00900F93 /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
 		CCBE071E2AE3BD2000900F93 /* PBTransactions.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = PBTransactions.json; sourceTree = "<group>"; };
 		CCBE07212AE3C63B00900F93 /* JSONDecoder+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "JSONDecoder+Extension.swift"; sourceTree = "<group>"; };
+		CCBE07232AE3D41A00900F93 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,6 +89,7 @@
 				CCBE070F2AE3AC8000900F93 /* ApiService */,
 				CCBE06E02AE3A43F00900F93 /* Preview Content */,
 				CCBE07042AE3A6DF00900F93 /* Transactions */,
+				CCBE07232AE3D41A00900F93 /* Localizable.xcstrings */,
 			);
 			path = WorldOfPAYBACK;
 			sourceTree = "<group>";
@@ -205,6 +208,7 @@
 			files = (
 				CCBE06E22AE3A43F00900F93 /* Preview Assets.xcassets in Resources */,
 				CCBE071F2AE3BD2000900F93 /* PBTransactions.json in Resources */,
+				CCBE07242AE3D41B00900F93 /* Localizable.xcstrings in Resources */,
 				CCBE06DE2AE3A43F00900F93 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -40,6 +40,21 @@ struct TransactionsView: View {
                         .ignoresSafeArea(edges: [.horizontal, .top])
                         .opacity(0.2)
                 }
+            } else if let errorMessage = store.errorMessage,
+                      store.transactions.isEmpty
+            {
+                VStack(spacing: 16) {
+                    Text("An error occured")
+                        .font(.headline)
+                    Text(errorMessage)
+                        .font(.body)
+                    
+                    Button {
+                        presenter?.prepareView()
+                    } label: {
+                        Text("Retry")
+                    }
+                }
             }
         }
         .navigationTitle("Transactions")
@@ -101,7 +116,8 @@ private struct TransactionRow: View {
                             value: .init(amount: 123, currency: "PLN")
                         )
                     ),
-                ]
+                ],
+                errorMessage: "generic error message"
             )
         )
     }

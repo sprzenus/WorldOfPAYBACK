@@ -24,7 +24,6 @@ final class TransactionsPresenter {
         self.userInterface = userInterface
         self.transactionsProvider = transactionsProvider
     }
-    
 }
 
 // MARK: - TransactionsPresenterInterface
@@ -32,8 +31,9 @@ final class TransactionsPresenter {
 extension TransactionsPresenter: TransactionsPresenterInterface {
     func prepareView() {
         userInterface?.set(isLoading: true)
+        userInterface?.set(errorMessage: nil)
         Task {
-            await fetchData()
+            try? await fetchData()
             userInterface?.set(isLoading: false)
         }
     }
@@ -42,20 +42,17 @@ extension TransactionsPresenter: TransactionsPresenterInterface {
 // MARK: - Private
 
 extension TransactionsPresenter {
-    private func fetchData() async {
-        do {
-            let result = try await transactionsProvider.getTransactions()
-            switch result {
-            case .success(let response):
-                let sortedTransactions = response.items.sorted { lhs, rhs in
-                    lhs.transactionDetail.bookingDate > rhs.transactionDetail.bookingDate
-                }
-                userInterface?.set(transactions: sortedTransactions)
-            case .failure(let error):
-                print("Got an error: \(error)")
+    private func fetchData() async throws {
+        let result = try await transactionsProvider.getTransactions()
+        switch result {
+        case let .success(response):
+            let sortedTransactions = response.items.sorted { lhs, rhs in
+                lhs.transactionDetail.bookingDate > rhs.transactionDetail.bookingDate
             }
-        } catch {
-            // do nothing on cancel
+            userInterface?.set(transactions: sortedTransactions)
+        case let .failure(error):
+            userInterface?.set(errorMessage: String(localized: LocalizedStringResource("transactions_error_generic")))
+            print("Got an error: \(error)")
         }
     }
 }
