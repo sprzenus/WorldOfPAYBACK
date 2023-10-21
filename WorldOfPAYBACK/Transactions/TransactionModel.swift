@@ -11,7 +11,9 @@ struct TransactionsResponseModel: Codable {
     let items: [TransactionModel]
 }
 
-struct TransactionModel: Codable {
+struct TransactionModel: Codable, Identifiable {
+    var id: String { alias.reference }
+    
     let partnerDisplayName: String
     let alias: Alias
     let category: Int
@@ -22,7 +24,7 @@ struct TransactionModel: Codable {
     }
     
     struct Details: Codable {
-        let description: String
+        let description: String?
         let bookingDate: Date // "2022-07-24T10:59:05+0200"
         let value: Price
     }

@@ -15,9 +15,14 @@ protocol TransactionsPresenterInterface: AnyObject {
 @MainActor
 final class TransactionsPresenter {
     private weak var userInterface: TransactionsUserInterface?
+    private let transactionsProvider: TransactionsProviderType
     
-    init(userInterface: TransactionsUserInterface?) {
+    init(
+        userInterface: TransactionsUserInterface?,
+        transactionsProvider: TransactionsProviderType
+    ) {
         self.userInterface = userInterface
+        self.transactionsProvider = transactionsProvider
     }
     
 }
@@ -38,6 +43,17 @@ extension TransactionsPresenter: TransactionsPresenterInterface {
 
 extension TransactionsPresenter {
     private func fetchData() async {
+        do {
+            let result = try await transactionsProvider.getTransactions()
+            switch result {
+            case .success(let response):
+                userInterface?.set(transactions: response.items)
+            case .failure(let error):
+                print("Got an error: \(error)")
+            }
+        } catch {
+            // do nothing on cancel
+        }
         try? await Task.sleep(nanoseconds: UInt64(2e9))
     }
 }

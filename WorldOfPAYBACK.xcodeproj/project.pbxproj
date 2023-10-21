@@ -19,6 +19,11 @@
 		CCBE07112AE3AC9C00900F93 /* ApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBE07102AE3AC9C00900F93 /* ApiService.swift */; };
 		CCBE07142AE3AD0700900F93 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = CCBE07132AE3AD0700900F93 /* Alamofire */; };
 		CCBE07162AE3ADE800900F93 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBE07152AE3ADE800900F93 /* Constants.swift */; };
+		CCBE07182AE3BC5000900F93 /* ApiService_Transactions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBE07172AE3BC5000900F93 /* ApiService_Transactions.swift */; };
+		CCBE071A2AE3BC7F00900F93 /* ApiServiceError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBE07192AE3BC7F00900F93 /* ApiServiceError.swift */; };
+		CCBE071C2AE3BC8B00900F93 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBE071B2AE3BC8B00900F93 /* Endpoint.swift */; };
+		CCBE071F2AE3BD2000900F93 /* PBTransactions.json in Resources */ = {isa = PBXBuildFile; fileRef = CCBE071E2AE3BD2000900F93 /* PBTransactions.json */; };
+		CCBE07222AE3C63B00900F93 /* JSONDecoder+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBE07212AE3C63B00900F93 /* JSONDecoder+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,6 +40,11 @@
 		CCBE070D2AE3AC4D00900F93 /* TransactionsProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsProvider.swift; sourceTree = "<group>"; };
 		CCBE07102AE3AC9C00900F93 /* ApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiService.swift; sourceTree = "<group>"; };
 		CCBE07152AE3ADE800900F93 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		CCBE07172AE3BC5000900F93 /* ApiService_Transactions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiService_Transactions.swift; sourceTree = "<group>"; };
+		CCBE07192AE3BC7F00900F93 /* ApiServiceError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiServiceError.swift; sourceTree = "<group>"; };
+		CCBE071B2AE3BC8B00900F93 /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
+		CCBE071E2AE3BD2000900F93 /* PBTransactions.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = PBTransactions.json; sourceTree = "<group>"; };
+		CCBE07212AE3C63B00900F93 /* JSONDecoder+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "JSONDecoder+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,13 +78,15 @@
 		CCBE06D82AE3A43D00900F93 /* WorldOfPAYBACK */ = {
 			isa = PBXGroup;
 			children = (
-				CCBE070F2AE3AC8000900F93 /* Other */,
-				CCBE07042AE3A6DF00900F93 /* Transactions */,
+				CCBE07202AE3C62E00900F93 /* Extensions */,
+				CCBE06DF2AE3A43F00900F93 /* WorldOfPAYBACK.entitlements */,
+				CCBE07152AE3ADE800900F93 /* Constants.swift */,
 				CCBE06D92AE3A43D00900F93 /* WorldOfPAYBACKApp.swift */,
 				CCBE06DD2AE3A43F00900F93 /* Assets.xcassets */,
-				CCBE06DF2AE3A43F00900F93 /* WorldOfPAYBACK.entitlements */,
+				CCBE071E2AE3BD2000900F93 /* PBTransactions.json */,
+				CCBE070F2AE3AC8000900F93 /* ApiService */,
 				CCBE06E02AE3A43F00900F93 /* Preview Content */,
-				CCBE07152AE3ADE800900F93 /* Constants.swift */,
+				CCBE07042AE3A6DF00900F93 /* Transactions */,
 			);
 			path = WorldOfPAYBACK;
 			sourceTree = "<group>";
@@ -90,22 +102,41 @@
 		CCBE07042AE3A6DF00900F93 /* Transactions */ = {
 			isa = PBXGroup;
 			children = (
-				CCBE06DB2AE3A43D00900F93 /* TransactionsView.swift */,
-				CCBE07052AE3A73600900F93 /* TransactionsRouter.swift */,
-				CCBE07072AE3A76500900F93 /* TransactionsPresenter.swift */,
-				CCBE07092AE3A91900900F93 /* TransactionsStore.swift */,
 				CCBE070B2AE3AADD00900F93 /* TransactionModel.swift */,
+				CCBE07072AE3A76500900F93 /* TransactionsPresenter.swift */,
 				CCBE070D2AE3AC4D00900F93 /* TransactionsProvider.swift */,
+				CCBE07052AE3A73600900F93 /* TransactionsRouter.swift */,
+				CCBE07092AE3A91900900F93 /* TransactionsStore.swift */,
+				CCBE06DB2AE3A43D00900F93 /* TransactionsView.swift */,
 			);
 			path = Transactions;
 			sourceTree = "<group>";
 		};
-		CCBE070F2AE3AC8000900F93 /* Other */ = {
+		CCBE070F2AE3AC8000900F93 /* ApiService */ = {
 			isa = PBXGroup;
 			children = (
+				CCBE07172AE3BC5000900F93 /* ApiService_Transactions.swift */,
 				CCBE07102AE3AC9C00900F93 /* ApiService.swift */,
+				CCBE071D2AE3BCA600900F93 /* Models */,
 			);
-			path = Other;
+			path = ApiService;
+			sourceTree = "<group>";
+		};
+		CCBE071D2AE3BCA600900F93 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				CCBE07192AE3BC7F00900F93 /* ApiServiceError.swift */,
+				CCBE071B2AE3BC8B00900F93 /* Endpoint.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		CCBE07202AE3C62E00900F93 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				CCBE07212AE3C63B00900F93 /* JSONDecoder+Extension.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -173,6 +204,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CCBE06E22AE3A43F00900F93 /* Preview Assets.xcassets in Resources */,
+				CCBE071F2AE3BD2000900F93 /* PBTransactions.json in Resources */,
 				CCBE06DE2AE3A43F00900F93 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -186,12 +218,16 @@
 			files = (
 				CCBE070C2AE3AADD00900F93 /* TransactionModel.swift in Sources */,
 				CCBE07062AE3A73600900F93 /* TransactionsRouter.swift in Sources */,
+				CCBE071A2AE3BC7F00900F93 /* ApiServiceError.swift in Sources */,
 				CCBE070A2AE3A91900900F93 /* TransactionsStore.swift in Sources */,
 				CCBE070E2AE3AC4D00900F93 /* TransactionsProvider.swift in Sources */,
 				CCBE06DC2AE3A43D00900F93 /* TransactionsView.swift in Sources */,
+				CCBE07182AE3BC5000900F93 /* ApiService_Transactions.swift in Sources */,
 				CCBE06DA2AE3A43D00900F93 /* WorldOfPAYBACKApp.swift in Sources */,
 				CCBE07112AE3AC9C00900F93 /* ApiService.swift in Sources */,
 				CCBE07082AE3A76500900F93 /* TransactionsPresenter.swift in Sources */,
+				CCBE07222AE3C63B00900F93 /* JSONDecoder+Extension.swift in Sources */,
+				CCBE071C2AE3BC8B00900F93 /* Endpoint.swift in Sources */,
 				CCBE07162AE3ADE800900F93 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

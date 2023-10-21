@@ -10,14 +10,20 @@ import Foundation
 @MainActor
 protocol TransactionsUserInterface: AnyObject {
     func set(isLoading: Bool)
+    func set(transactions: [TransactionModel])
 }
 
 @MainActor
 final class TransactionsStore: ObservableObject {
     @Published var isLoading: Bool
+    @Published var transactions: [TransactionModel]
     
-    init(isLoading: Bool = false) {
+    init(
+        isLoading: Bool = false,
+        transactions: [TransactionModel] = []
+    ) {
         self.isLoading = isLoading
+        self.transactions = transactions
     }
 }
 
@@ -26,5 +32,9 @@ final class TransactionsStore: ObservableObject {
 extension TransactionsStore: TransactionsUserInterface {
     func set(isLoading: Bool) {
         self.isLoading = isLoading
+    }
+    
+    func set(transactions: [TransactionModel]) {
+        self.transactions = transactions
     }
 }

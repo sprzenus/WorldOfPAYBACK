@@ -8,11 +8,33 @@
 import Foundation
 
 protocol TransactionsProviderType: AnyObject {
-    func getTransactions() async -> TransactionsResponseModel
+    func getTransactions() async throws -> Result<TransactionsResponseModel, ApiServiceError>
 }
 
 final class TransactionsProvider {
-    func getTransactions() async -> TransactionsResponseModel {
-        
+    private let apiService: ApiService_Transactions
+    
+    init(apiService: ApiService_Transactions = ApiService()) {
+        self.apiService = apiService
+    }
+}
+
+// MARK: - TransactionsProviderType
+
+extension TransactionsProvider: TransactionsProviderType {
+    func getTransactions() async throws -> Result<TransactionsResponseModel, ApiServiceError> {
+        // Uncomment the next line when backend is ready.
+        //        return try await apiService.getTransactions()
+        do {
+            if let filePath = Bundle.main.path(forResource: "PBTransactions", ofType: "json"),
+               let data = FileManager.default.contents(atPath: filePath)
+            {
+                let object = try JSONDecoder.paybackDefault.decode(TransactionsResponseModel.self, from: data)
+                return .success(object)
+            }
+            return .failure(.transportError(NSError(domain: "me", code: 0)))
+        } catch {
+            return .failure(.transportError(error))
+        }
     }
 }

@@ -12,8 +12,14 @@ import SwiftUI
 final class TransactionsRouter {
     func getView() -> TransactionsView {
         let store = TransactionsStore()
-        let presenter = TransactionsPresenter(userInterface: store)
-        let view = TransactionsView(presenter: presenter, store: store)
+        let presenter = TransactionsPresenter(
+            userInterface: store,
+            transactionsProvider: TransactionsProvider()
+        )
+        let view = TransactionsView(
+            presenter: presenter,
+            store: store
+        )
         return view
     }
 }
