@@ -14,6 +14,11 @@
 		CCBE07062AE3A73600900F93 /* TransactionsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBE07052AE3A73600900F93 /* TransactionsRouter.swift */; };
 		CCBE07082AE3A76500900F93 /* TransactionsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBE07072AE3A76500900F93 /* TransactionsPresenter.swift */; };
 		CCBE070A2AE3A91900900F93 /* TransactionsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBE07092AE3A91900900F93 /* TransactionsStore.swift */; };
+		CCBE070C2AE3AADD00900F93 /* TransactionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBE070B2AE3AADD00900F93 /* TransactionModel.swift */; };
+		CCBE070E2AE3AC4D00900F93 /* TransactionsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBE070D2AE3AC4D00900F93 /* TransactionsProvider.swift */; };
+		CCBE07112AE3AC9C00900F93 /* ApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBE07102AE3AC9C00900F93 /* ApiService.swift */; };
+		CCBE07142AE3AD0700900F93 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = CCBE07132AE3AD0700900F93 /* Alamofire */; };
+		CCBE07162AE3ADE800900F93 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBE07152AE3ADE800900F93 /* Constants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +31,10 @@
 		CCBE07052AE3A73600900F93 /* TransactionsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsRouter.swift; sourceTree = "<group>"; };
 		CCBE07072AE3A76500900F93 /* TransactionsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsPresenter.swift; sourceTree = "<group>"; };
 		CCBE07092AE3A91900900F93 /* TransactionsStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsStore.swift; sourceTree = "<group>"; };
+		CCBE070B2AE3AADD00900F93 /* TransactionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionModel.swift; sourceTree = "<group>"; };
+		CCBE070D2AE3AC4D00900F93 /* TransactionsProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionsProvider.swift; sourceTree = "<group>"; };
+		CCBE07102AE3AC9C00900F93 /* ApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiService.swift; sourceTree = "<group>"; };
+		CCBE07152AE3ADE800900F93 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,6 +42,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CCBE07142AE3AD0700900F93 /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -58,11 +68,13 @@
 		CCBE06D82AE3A43D00900F93 /* WorldOfPAYBACK */ = {
 			isa = PBXGroup;
 			children = (
+				CCBE070F2AE3AC8000900F93 /* Other */,
 				CCBE07042AE3A6DF00900F93 /* Transactions */,
 				CCBE06D92AE3A43D00900F93 /* WorldOfPAYBACKApp.swift */,
 				CCBE06DD2AE3A43F00900F93 /* Assets.xcassets */,
 				CCBE06DF2AE3A43F00900F93 /* WorldOfPAYBACK.entitlements */,
 				CCBE06E02AE3A43F00900F93 /* Preview Content */,
+				CCBE07152AE3ADE800900F93 /* Constants.swift */,
 			);
 			path = WorldOfPAYBACK;
 			sourceTree = "<group>";
@@ -82,8 +94,18 @@
 				CCBE07052AE3A73600900F93 /* TransactionsRouter.swift */,
 				CCBE07072AE3A76500900F93 /* TransactionsPresenter.swift */,
 				CCBE07092AE3A91900900F93 /* TransactionsStore.swift */,
+				CCBE070B2AE3AADD00900F93 /* TransactionModel.swift */,
+				CCBE070D2AE3AC4D00900F93 /* TransactionsProvider.swift */,
 			);
 			path = Transactions;
+			sourceTree = "<group>";
+		};
+		CCBE070F2AE3AC8000900F93 /* Other */ = {
+			isa = PBXGroup;
+			children = (
+				CCBE07102AE3AC9C00900F93 /* ApiService.swift */,
+			);
+			path = Other;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -102,6 +124,9 @@
 			dependencies = (
 			);
 			name = WorldOfPAYBACK;
+			packageProductDependencies = (
+				CCBE07132AE3AD0700900F93 /* Alamofire */,
+			);
 			productName = WorldOfPAYBACK;
 			productReference = CCBE06D62AE3A43D00900F93 /* WorldOfPAYBACK.app */;
 			productType = "com.apple.product-type.application";
@@ -130,6 +155,9 @@
 				Base,
 			);
 			mainGroup = CCBE06CD2AE3A43D00900F93;
+			packageReferences = (
+				CCBE07122AE3AD0700900F93 /* XCRemoteSwiftPackageReference "Alamofire" */,
+			);
 			productRefGroup = CCBE06D72AE3A43D00900F93 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -156,11 +184,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CCBE070C2AE3AADD00900F93 /* TransactionModel.swift in Sources */,
 				CCBE07062AE3A73600900F93 /* TransactionsRouter.swift in Sources */,
 				CCBE070A2AE3A91900900F93 /* TransactionsStore.swift in Sources */,
+				CCBE070E2AE3AC4D00900F93 /* TransactionsProvider.swift in Sources */,
 				CCBE06DC2AE3A43D00900F93 /* TransactionsView.swift in Sources */,
 				CCBE06DA2AE3A43D00900F93 /* WorldOfPAYBACKApp.swift in Sources */,
+				CCBE07112AE3AC9C00900F93 /* ApiService.swift in Sources */,
 				CCBE07082AE3A76500900F93 /* TransactionsPresenter.swift in Sources */,
+				CCBE07162AE3ADE800900F93 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -379,6 +411,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		CCBE07122AE3AD0700900F93 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.8.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		CCBE07132AE3AD0700900F93 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CCBE07122AE3AD0700900F93 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = CCBE06CE2AE3A43D00900F93 /* Project object */;
 }
