@@ -20,6 +20,16 @@ struct TransactionsView: View {
         }
     }
     
+    private var totalPrice: TransactionModel.Price? {
+        let transactions = transactions
+        guard let currency = transactions.first?.transactionDetail.value.currency else { return nil }
+        let amount = transactions
+            .filter { $0.transactionDetail.value.currency == currency } // Just for safety
+            .map(\.transactionDetail.value.amount)
+            .reduce(0.0, +)
+        return .init(amount: amount, currency: currency)
+    }
+    
     init(
         presenter: TransactionsPresenterInterface?,
         store: TransactionsStore
@@ -40,30 +50,18 @@ struct TransactionsView: View {
                 )
             }
         }
+        .safeAreaInset(edge: .bottom, content: {
+            if let totalPrice {
+                totalPriceView(price: totalPrice)
+            }
+        })
         .overlay {
             if store.isLoading {
-                ZStack {
-                    ProgressView()
-                        .progressViewStyle(.circular)
-                    Color.black
-                        .ignoresSafeArea(edges: [.horizontal, .top])
-                        .opacity(0.2)
-                }
+                loadingOverlay
             } else if let errorMessage = store.errorMessage,
                       store.transactions.isEmpty
             {
-                VStack(spacing: 16) {
-                    Text("An error occured")
-                        .font(.headline)
-                    Text(errorMessage)
-                        .font(.body)
-                    
-                    Button {
-                        presenter?.prepareView()
-                    } label: {
-                        Text("Retry")
-                    }
-                }
+                errorView(message: errorMessage)
             }
         }
         .overlay {
@@ -83,7 +81,10 @@ struct TransactionsView: View {
             }
         }
         .toolbar(content: {
-            toolbarContents
+            TransactionsToolbar(
+                categories: store.categories,
+                filterByCategory: $filterByCategory
+            )
         })
         .navigationTitle("Transactions")
         .onAppear {
@@ -91,8 +92,56 @@ struct TransactionsView: View {
         }
     }
     
-    @ToolbarContentBuilder
-    private var toolbarContents: some ToolbarContent {
+    @ViewBuilder
+    private func totalPriceView(price: TransactionModel.Price) -> some View {
+        HStack {
+            Text("Total")
+                .fontWeight(.light)
+            Spacer()
+            Text(price.amount.formatted(.currency(code: price.currency)))
+                .bold()
+        }
+        .font(.title)
+        .padding(.horizontal, 24)
+        .padding(.vertical, 8)
+        .background(.thinMaterial)
+    }
+    
+    @ViewBuilder
+    private var loadingOverlay: some View {
+        ZStack {
+            ProgressView()
+                .progressViewStyle(.circular)
+            Color.black
+                .ignoresSafeArea(edges: [.horizontal, .top])
+                .opacity(0.2)
+        }
+    }
+    
+    @ViewBuilder
+    private func errorView(message errorMessage: String) -> some View {
+        VStack(spacing: 16) {
+            Text("An error occured")
+                .font(.headline)
+            Text(errorMessage)
+                .font(.body)
+            
+            Button {
+                presenter?.prepareView()
+            } label: {
+                Text("Retry")
+            }
+        }
+    }
+}
+
+// MARK: - TransactionsToolbar
+
+private struct TransactionsToolbar: ToolbarContent {
+    let categories: [Int]
+    @Binding var filterByCategory: Int?
+    
+    var body: some ToolbarContent {
         ToolbarItem(placement: .topBarTrailing) {
             Menu {
                 Button {
@@ -100,7 +149,7 @@ struct TransactionsView: View {
                 } label: {
                     Text("Clear filters")
                 }
-                ForEach(store.categories, id: \.self) { category in
+                ForEach(categories, id: \.self) { category in
                     Button {
                         filterByCategory = category
                     } label: {
@@ -123,6 +172,8 @@ struct TransactionsView: View {
         }
     }
 }
+
+// MARK: - TransactionRow
 
 private struct TransactionRow: View {
     let partnerDisplayName: String
@@ -156,30 +207,30 @@ private struct TransactionRow: View {
     }
 }
 
+// MARK: - Previews
+
 #Preview {
-    TabView {
-        NavigationView {
-            TransactionsView(
-                presenter: nil,
-                store: TransactionsStore(
-                    isLoading: false,
-                    transactions: [
-                        .init(
-                            partnerDisplayName: "One title",
-                            alias: .init(reference: "ref"),
-                            category: 2,
-                            transactionDetail: .init(
-                                description: "Description",
-                                bookingDate: Date(),
-                                value: .init(amount: 123, currency: "PLN")
-                            )
-                        ),
-                    ],
-                    categories: [1, 2, 3],
-                    errorMessage: "generic error message",
-                    isInternetReachable: true
-                )
+    NavigationView {
+        TransactionsView(
+            presenter: nil,
+            store: TransactionsStore(
+                isLoading: false,
+                transactions: [
+                    .init(
+                        partnerDisplayName: "One title",
+                        alias: .init(reference: "ref"),
+                        category: 2,
+                        transactionDetail: .init(
+                            description: "Description",
+                            bookingDate: Date(),
+                            value: .init(amount: 123, currency: "PLN")
+                        )
+                    ),
+                ],
+                categories: [1, 2, 3],
+                errorMessage: "generic error message",
+                isInternetReachable: true
             )
-        }
+        )
     }
 }
