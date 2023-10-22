@@ -10,7 +10,20 @@ import SwiftUI
 
 @MainActor
 final class TransactionsRouter {
-    func getView() -> TransactionsView {
+    @ViewBuilder
+    func getViewInNavigationView() -> some View {
+        NavigationView {
+            getView()
+        }
+        .tabItem {
+            Group {
+                Image(systemName: "house")
+                Text("Transactions")
+            }
+        }
+    }
+    
+    private func getView() -> TransactionsView {
         let store = TransactionsStore()
         let presenter = TransactionsPresenter(
             userInterface: store,

@@ -86,12 +86,6 @@ struct TransactionsView: View {
             toolbarContents
         })
         .navigationTitle("Transactions")
-        .tabItem {
-            Group {
-                Image(systemName: "house")
-                Text("Transactions")
-            }
-        }
         .onAppear {
             presenter?.prepareView()
         }
