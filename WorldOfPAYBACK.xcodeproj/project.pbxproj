@@ -26,6 +26,9 @@
 		CCBE07222AE3C63B00900F93 /* JSONDecoder+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBE07212AE3C63B00900F93 /* JSONDecoder+Extension.swift */; };
 		CCBE07242AE3D41B00900F93 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = CCBE07232AE3D41A00900F93 /* Localizable.xcstrings */; };
 		CCE828692AE3DBE900B9D166 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCE828682AE3DBE900B9D166 /* Reachability.swift */; };
+		CCE8286D2AE50B1300B9D166 /* TransactionDetailsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCE8286C2AE50B1300B9D166 /* TransactionDetailsRouter.swift */; };
+		CCE8286F2AE50B2F00B9D166 /* TransactionDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCE8286E2AE50B2F00B9D166 /* TransactionDetailsView.swift */; };
+		CCE828712AE50CCC00B9D166 /* TransactionDetailsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCE828702AE50CCC00B9D166 /* TransactionDetailsStore.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -49,6 +52,9 @@
 		CCBE07212AE3C63B00900F93 /* JSONDecoder+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "JSONDecoder+Extension.swift"; sourceTree = "<group>"; };
 		CCBE07232AE3D41A00900F93 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		CCE828682AE3DBE900B9D166 /* Reachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
+		CCE8286C2AE50B1300B9D166 /* TransactionDetailsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionDetailsRouter.swift; sourceTree = "<group>"; };
+		CCE8286E2AE50B2F00B9D166 /* TransactionDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionDetailsView.swift; sourceTree = "<group>"; };
+		CCE828702AE50CCC00B9D166 /* TransactionDetailsStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionDetailsStore.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,17 +88,17 @@
 		CCBE06D82AE3A43D00900F93 /* WorldOfPAYBACK */ = {
 			isa = PBXGroup;
 			children = (
-				CCBE07202AE3C62E00900F93 /* Extensions */,
+				CCE8286B2AE50AEF00B9D166 /* Source */,
 				CCBE06DF2AE3A43F00900F93 /* WorldOfPAYBACK.entitlements */,
+				CCBE071E2AE3BD2000900F93 /* PBTransactions.json */,
 				CCBE07152AE3ADE800900F93 /* Constants.swift */,
+				CCE828682AE3DBE900B9D166 /* Reachability.swift */,
 				CCBE06D92AE3A43D00900F93 /* WorldOfPAYBACKApp.swift */,
 				CCBE06DD2AE3A43F00900F93 /* Assets.xcassets */,
-				CCBE071E2AE3BD2000900F93 /* PBTransactions.json */,
-				CCBE070F2AE3AC8000900F93 /* ApiService */,
-				CCBE06E02AE3A43F00900F93 /* Preview Content */,
-				CCBE07042AE3A6DF00900F93 /* Transactions */,
 				CCBE07232AE3D41A00900F93 /* Localizable.xcstrings */,
-				CCE828682AE3DBE900B9D166 /* Reachability.swift */,
+				CCBE070F2AE3AC8000900F93 /* ApiService */,
+				CCBE07202AE3C62E00900F93 /* Extensions */,
+				CCBE06E02AE3A43F00900F93 /* Preview Content */,
 			);
 			path = WorldOfPAYBACK;
 			sourceTree = "<group>";
@@ -145,6 +151,25 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		CCE8286A2AE50AE500B9D166 /* TransactionDetails */ = {
+			isa = PBXGroup;
+			children = (
+				CCE8286C2AE50B1300B9D166 /* TransactionDetailsRouter.swift */,
+				CCE8286E2AE50B2F00B9D166 /* TransactionDetailsView.swift */,
+				CCE828702AE50CCC00B9D166 /* TransactionDetailsStore.swift */,
+			);
+			path = TransactionDetails;
+			sourceTree = "<group>";
+		};
+		CCE8286B2AE50AEF00B9D166 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				CCBE07042AE3A6DF00900F93 /* Transactions */,
+				CCE8286A2AE50AE500B9D166 /* TransactionDetails */,
+			);
+			path = Source;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -190,6 +215,7 @@
 			knownRegions = (
 				en,
 				Base,
+				pl,
 			);
 			mainGroup = CCBE06CD2AE3A43D00900F93;
 			packageReferences = (
@@ -225,6 +251,7 @@
 			files = (
 				CCE828692AE3DBE900B9D166 /* Reachability.swift in Sources */,
 				CCBE070C2AE3AADD00900F93 /* TransactionModel.swift in Sources */,
+				CCE828712AE50CCC00B9D166 /* TransactionDetailsStore.swift in Sources */,
 				CCBE07062AE3A73600900F93 /* TransactionsRouter.swift in Sources */,
 				CCBE071A2AE3BC7F00900F93 /* ApiServiceError.swift in Sources */,
 				CCBE070A2AE3A91900900F93 /* TransactionsStore.swift in Sources */,
@@ -233,9 +260,11 @@
 				CCBE07182AE3BC5000900F93 /* ApiService_Transactions.swift in Sources */,
 				CCBE06DA2AE3A43D00900F93 /* WorldOfPAYBACKApp.swift in Sources */,
 				CCBE07112AE3AC9C00900F93 /* ApiService.swift in Sources */,
+				CCE8286D2AE50B1300B9D166 /* TransactionDetailsRouter.swift in Sources */,
 				CCBE07082AE3A76500900F93 /* TransactionsPresenter.swift in Sources */,
 				CCBE07222AE3C63B00900F93 /* JSONDecoder+Extension.swift in Sources */,
 				CCBE071C2AE3BC8B00900F93 /* Endpoint.swift in Sources */,
+				CCE8286F2AE50B2F00B9D166 /* TransactionDetailsView.swift in Sources */,
 				CCBE07162AE3ADE800900F93 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

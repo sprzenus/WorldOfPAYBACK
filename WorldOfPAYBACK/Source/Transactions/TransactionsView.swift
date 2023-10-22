@@ -41,13 +41,19 @@ struct TransactionsView: View {
     var body: some View {
         List {
             ForEach(transactions) { transaction in
-                TransactionRow(
-                    partnerDisplayName: transaction.partnerDisplayName,
-                    bookingDate: transaction.transactionDetail.bookingDate,
-                    description: transaction.transactionDetail.description,
-                    priceAmount: transaction.transactionDetail.value.amount,
-                    priceCurrency: transaction.transactionDetail.value.currency
-                )
+                NavigationLink {
+                    TransactionDetailsRouter(transaction: transaction)
+                        .getView()
+                    // This should be done by the router, however I've got no time to refactor this at the moment.
+                } label: {
+                    TransactionRow(
+                        partnerDisplayName: transaction.partnerDisplayName,
+                        bookingDate: transaction.transactionDetail.bookingDate,
+                        description: transaction.transactionDetail.description,
+                        priceAmount: transaction.transactionDetail.value.amount,
+                        priceCurrency: transaction.transactionDetail.value.currency
+                    )
+                }
             }
         }
         .safeAreaInset(edge: .bottom, content: {

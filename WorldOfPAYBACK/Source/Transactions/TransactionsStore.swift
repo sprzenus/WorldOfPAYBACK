@@ -17,11 +17,11 @@ protocol TransactionsUserInterface: AnyObject {
 
 @MainActor
 final class TransactionsStore: ObservableObject {
-    @Published var isLoading: Bool
-    @Published var transactions: [TransactionModel]
-    @Published var categories: [Int]
-    @Published var errorMessage: String?
-    @Published var isInternetReachable: Bool
+    @Published private(set) var isLoading: Bool
+    @Published private(set) var transactions: [TransactionModel]
+    @Published private(set) var categories: [Int]
+    @Published private(set) var errorMessage: String?
+    @Published private(set) var isInternetReachable: Bool
     
     init(
         isLoading: Bool = false,

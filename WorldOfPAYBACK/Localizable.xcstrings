@@ -2,22 +2,64 @@
   "sourceLanguage" : "en",
   "strings" : {
     "%lld" : {
-
+      "localizations" : {
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld"
+          }
+        }
+      }
     },
     "An error occured" : {
-
+      "localizations" : {
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wystąpił błąd"
+          }
+        }
+      }
     },
     "Clear filters" : {
-
+      "localizations" : {
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Usuń filtry"
+          }
+        }
+      }
     },
     "Retry" : {
-
+      "localizations" : {
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ponów"
+          }
+        }
+      }
     },
     "Total" : {
-
+      "localizations" : {
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Suma"
+          }
+        }
+      }
     },
     "Transactions" : {
-
+      "localizations" : {
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Transakcje"
+          }
+        }
+      }
     },
     "transactions_error_generic" : {
       "extractionState" : "manual",
@@ -27,11 +69,24 @@
             "state" : "translated",
             "value" : "An error has occured, please try again later."
           }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wystąpił błąd. Proszę spróbuj ponownie później."
+          }
         }
       }
     },
     "We've lost internet connection." : {
-
+      "localizations" : {
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Połączenie z internetem zerwane."
+          }
+        }
+      }
     }
   },
   "version" : "1.0"
